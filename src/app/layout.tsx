@@ -11,10 +11,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="bg-gray-100">
-        <div className="flex">
-          <Sidebar />
-          <main className="flex-1 p-4 ml-64">{children}</main> {/* Ajusta el margen cuando la barra esté visible */}
-        </div>
+       <div className="relative">
+        <Sidebar />
+        <main className="flex flex-col items-center justify-center">{children}</main>
+      </div>
       </body>
     </html>
   );
