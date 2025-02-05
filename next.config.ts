@@ -1,11 +1,11 @@
 const nextConfig = {
   output: "export",
-  basePath: "/teruah", // Asegura que funcione bien en GitHub Pages
-  publicRuntimeConfig: {
-    basePath: "/teruah",
-  },
+  basePath: "/teruah", // ✅ Define el basePath correctamente
   images: {
-    unoptimized: true,
+    unoptimized: true, // ✅ Necesario para GitHub Pages
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: "/teruah", // ✅ Permite acceder a esto en frontend
   },
 };
 
