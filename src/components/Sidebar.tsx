@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link"; // Importar Link de Next.js
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/outline";
 
 export default function Sidebar() {
@@ -40,10 +41,26 @@ export default function Sidebar() {
         {/* Menú de navegación */}
         <nav className="mt-12">
           <ul className="space-y-4">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/libreria">Librería</a></li>
-            <li><a href="/nosotros">Nosotros</a></li>
-            <li><a href="/contacto">Contacto</a></li>
+            <li>
+              <Link href="/" className="block p-2 hover:bg-gray-700 rounded">
+                Inicio
+              </Link>
+            </li>
+            <li>
+              <Link href="/libreria" className="block p-2 hover:bg-gray-700 rounded">
+                Librería
+              </Link>
+            </li>
+            <li>
+              <Link href="/nosotros" className="block p-2 hover:bg-gray-700 rounded">
+                Nosotros
+              </Link>
+            </li>
+            <li>
+              <Link href="/contacto" className="block p-2 hover:bg-gray-700 rounded">
+                Contacto
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

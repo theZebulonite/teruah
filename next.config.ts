@@ -1,11 +1,10 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  output: "export",  // Habilita `next export`
-  basePath: "/teruah", // Cambia esto al nombre de tu repo en GitHub
+const nextConfig = {
+  output: "export", // Necesario para GitHub Pages
+  basePath: process.env.NODE_ENV === "production" ? "/teruah" : "", // Solo en producción
   images: {
-    unoptimized: true, // Necesario porque GitHub Pages no soporta optimización de imágenes Next.js
+    unoptimized: true, // Necesario para GitHub Pages
   },
 };
 
 export default nextConfig;
+
