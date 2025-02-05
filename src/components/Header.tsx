@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import basePath from "@/lib/basePath"; // Ahora sí existe
 
 export default function Header() {
   return (
@@ -7,7 +8,7 @@ export default function Header() {
       <div className="relative w-full h-full">
         <Image
           alt="Familia leyendo un libro"
-          src="/images/header_desktop.png"
+          src={`${basePath}/images/header_desktop.png`} // Se añade el basePath dinámicamente
           layout="fill"
           objectFit="cover"
           priority
@@ -16,3 +17,4 @@ export default function Header() {
     </header>
   );
 }
+
