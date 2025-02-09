@@ -1,5 +1,11 @@
-// src/app/nosotros/page.tsx
+import AboutUs from "@/components/AboutUs";
+import Footer from "@/components/Footer"; // Ajusta la ruta según sea necesario
+// src/app/libreria/page.tsx
 export default function NosotrosPage() {
-    return <h1>Nosotros</h1>;
+    return (
+      <>
+        <AboutUs />
+        <Footer />
+      </>
+    );    
   }
-  

@@ -1,10 +1,6 @@
 "use client";
 
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+import React from 'react';
 import BookCard from "./BookCard";
 
 const books = [
@@ -60,40 +56,17 @@ const books = [
   },
 ];
 
-const BooksSection: React.FC = () => {
+const Libreria: React.FC = () => {
   return (
-    <section className="py-8 overflow-hidden">
-      {/* Título */}
-      <h2 className="text-slate-900 text-3xl font-bold text-center mb-6">
-        PUBLICACIONES RECIENTES
-      </h2>
-
-      {/* Swiper envuelto en un div con padding lateral */}
-      <div className="relative max-w-[90vw] mx-auto">
-        <Swiper
-          modules={[Navigation]}
-          spaceBetween={15}
-          slidesPerView={5}
-          autoHeight={false}
-          navigation
-          className="w-full"
-          breakpoints={{
-            1280: { slidesPerView: 5 },
-            1024: { slidesPerView: 4 },
-            768: { slidesPerView: 3 },
-            480: { slidesPerView: 2 },
-            0: { slidesPerView: 1 },
-          }}
-        >
-          {books.map((book, index) => (
-            <SwiperSlide key={index} className="flex justify-center">
-              <BookCard {...book} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+    <div className="container mx-auto py-10">
+      <h1 className="text-4xl font-bold text-center mb-8 text-slate-900">Nuestra Librería</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {books.map((book, index) => (
+          <BookCard key={index} {...book} />
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 
-export default BooksSection;
+export default Libreria;
