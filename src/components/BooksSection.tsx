@@ -86,7 +86,7 @@ const BooksSection: React.FC = () => {
           }}
         >
           {books.map((book, index) => (
-            <SwiperSlide key={index} className="flex justify-center">
+            <SwiperSlide key={index} className="flex justify-center justify-items-center">
               <BookCard {...book} />
             </SwiperSlide>
           ))}
