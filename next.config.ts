@@ -1,5 +1,5 @@
 const nextConfig = {
-  output: "export",
+  //output: "export",
   basePath: "/teruah", // ✅ Define el basePath correctamente
   images: {
     unoptimized: true, // ✅ Necesario para GitHub Pages
