@@ -32,7 +32,6 @@ async function connectToDatabase(): Promise<typeof mongoose> {
   }
 
   if (!cached.promise) {
-    // Elimina las opciones obsoletas
     cached.promise = mongoose.connect(MONGODB_URI!).then((mongooseInstance) => {
       console.log('✅ Conectado a MongoDB'); // Mensaje de confirmación
       return mongooseInstance;
@@ -42,7 +41,6 @@ async function connectToDatabase(): Promise<typeof mongoose> {
     });
   }
 
-  // Espera a que la promesa se resuelva y almacena la conexión en "cached.conn"
   cached.conn = await cached.promise;
   return cached.conn;
 }
