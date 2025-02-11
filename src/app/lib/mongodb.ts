@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 import mongoose from 'mongoose';
 
 // Define el tipo para el objeto "cached"
@@ -7,7 +8,6 @@ interface MongooseCache {
 }
 
 // Extiende el objeto global para incluir "mongoose"
-// eslint-disable-next-line no-var
 declare global {
   var mongoose: MongooseCache;
 }
