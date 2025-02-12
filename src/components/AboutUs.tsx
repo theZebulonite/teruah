@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 const AboutUs = () => {
     return (
       <section className="bg-gray-100 py-16 px-6">
@@ -8,10 +10,12 @@ const AboutUs = () => {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
           {/* Imagen */}
           <div className="flex justify-center">
-            <img 
+            <Image 
               src="./images/aboutUs.webp" 
               alt="Nuestro equipo" 
               className="rounded-lg shadow-lg"
+              layout="fill"
+              objectFit="cover"
             />
           </div>
   
