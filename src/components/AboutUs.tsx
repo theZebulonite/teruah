@@ -9,13 +9,13 @@ const AboutUs = () => {
   
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
           {/* Imagen */}
-          <div className="flex justify-center">
-            <Image 
+          <div className="relative w-full h-64 md:h-96"> {/* Ajusta la altura según tus necesidades */}
+            <Image
               src="./images/aboutUs.webp" 
-              alt="Nuestro equipo" 
-              className="rounded-lg shadow-lg"
-              layout="fill"
-              objectFit="cover"
+              alt="Nuestro equipo"
+              layout="fill" // Usa layout="fill" para que la imagen ocupe todo el contenedor
+              objectFit="cover" // Asegura que la imagen cubra el espacio sin distorsión
+              className="rounded-lg shadow-lg" // Estilos adicionales
             />
           </div>
   
