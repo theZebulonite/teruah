@@ -32,6 +32,10 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
+      - name: Build project
+        run: npm run build
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
 
   deploy:
     environment:
