@@ -57,7 +57,7 @@ export default function Sidebar() {
               </Link>
             </li>
             <li>
-              <Link href="/contacto" className="block p-2 hover:bg-gray-700 rounded">
+              <Link href="/contact" className="block p-2 hover:bg-gray-700 rounded">
                 Contacto
               </Link>
             </li>
