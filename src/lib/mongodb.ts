@@ -16,12 +16,14 @@ if (process.env.NODE_ENV === "development") {
   if (!global._mongoClientPromise) {
     client = new MongoClient(uri, options);
     global._mongoClientPromise = client.connect();
+    console.log("Nueva conexión a MongoDB en desarrollo"); // Agrega este console.log
   }
   clientPromise = global._mongoClientPromise;
 } else {
   // En producción, crea una nueva conexión
   client = new MongoClient(uri, options);
   clientPromise = client.connect();
+  console.log("Nueva conexión a MongoDB en producción"); // Agrega este console.log
 }
 
 // Exporta la promesa del cliente para usarla en otras partes de la aplicación
