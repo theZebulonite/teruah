@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
+import { sendEmail } from "@/lib/mailer"; // Importa la función de envío de correos
 
 export async function POST(request: Request) {
   const { name, email, message, subscribe } = await request.json();
@@ -12,19 +13,9 @@ export async function POST(request: Request) {
     );
   }
 
-  // Validación de correo electrónico
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return NextResponse.json(
-      { error: "Por favor, ingresa un correo electrónico válido." },
-      { status: 400 }
-    );
-  }
-
   try {
-    // Conectar a MongoDB usando clientPromise
     const client = await clientPromise;
-    const db = client.db("teruah_db"); // Especifica el nombre de la base de datos
+    const db = client.db("teruah_db");
 
     // Guardar el mensaje en la colección "messages"
     await db.collection("messages").insertOne({
@@ -43,22 +34,24 @@ export async function POST(request: Request) {
       });
     }
 
+    // Enviar notificación por correo electrónico
+    const adminEmail = process.env.ADMIN_EMAIL;
+    if (!adminEmail) {
+      throw new Error("ADMIN_EMAIL environment variable is not defined");
+    }
+
+    await sendEmail(
+      adminEmail, // Correo del administrador
+      "Nuevo mensaje de contacto", // Asunto del correo
+      `Nombre: ${name}\nEmail: ${email}\nMensaje: ${message}` // Cuerpo del correo
+    );
+
     return NextResponse.json(
       { message: "Mensaje enviado correctamente." },
       { status: 200 }
     );
   } catch (error) {
     console.error("Error:", error);
-
-    // Verifica si el error es una instancia de Error
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { error: "Hubo un error al enviar el mensaje.", details: error.message },
-        { status: 500 }
-      );
-    }
-
-    // Si el error no es una instancia de Error, devuelve un mensaje genérico
     return NextResponse.json(
       { error: "Hubo un error al enviar el mensaje." },
       { status: 500 }
