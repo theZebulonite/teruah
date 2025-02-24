@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
-import { sendEmail } from "@/lib/mailer"; // Importa la función de envío de correos.
+import { sendEmail } from "@/lib/mailer"; // Importa la función de envío de correos
 
 export async function POST(request: Request) {
   const { name, email, message, subscribe } = await request.json();
