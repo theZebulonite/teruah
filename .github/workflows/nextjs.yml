@@ -29,6 +29,9 @@ jobs:
       - name: Build with Next.js
         run: npm run build
         env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
           MONGO_URI: ${{ secrets.MONGO_URI }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
