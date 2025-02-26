@@ -6,11 +6,10 @@ export async function GET() {
     const messages = await getMessages();
     return NextResponse.json(messages);
   } catch (error) {
+    console.error("Error al obtener los mensajes:", error); // Registra el error en la consola
     return NextResponse.json(
       { error: "Error al obtener los mensajes" },
       { status: 500 }
     );
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
   }
 }
