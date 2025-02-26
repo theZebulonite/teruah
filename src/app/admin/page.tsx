@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Message, Subscriber } from "@/lib/types";
 
 export default function AdminPage() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const [messages, setMessages] = useState<Message[]>([]);
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
 

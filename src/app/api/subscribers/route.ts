@@ -10,5 +10,7 @@ export async function GET() {
       { error: "Error al obtener los suscriptores" },
       { status: 500 }
     );
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
   }
 }
