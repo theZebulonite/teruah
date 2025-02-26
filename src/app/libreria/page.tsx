@@ -5,7 +5,6 @@ export default function LibreriaPage() {
     return (
       <>
         <Libreria />
-        <Footer />
       </>
     );    
   }

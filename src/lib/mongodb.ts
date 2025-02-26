@@ -26,5 +26,19 @@ if (process.env.NODE_ENV === "development") {
   console.log("Nueva conexión a MongoDB en producción"); // Agrega este console.log
 }
 
+// Función para obtener los mensajes
+export async function getMessages() {
+  const client = await clientPromise;
+  const db = client.db("teruah_db");
+  return db.collection("messages").find().toArray();
+}
+
+// Función para obtener los suscriptores
+export async function getSubscribers() {
+  const client = await clientPromise;
+  const db = client.db("teruah_db");
+  return db.collection("subscribers").find().toArray();
+}
+
 // Exporta la promesa del cliente para usarla en otras partes de la aplicación
 export default clientPromise;

@@ -5,7 +5,6 @@ export default function NosotrosPage() {
     return (
       <>
         <AboutUs />
-        <Footer />
       </>
     );    
   }

@@ -2,9 +2,11 @@
 import { useState } from "react";
 import Link from "next/link"; // Importar Link de Next.js
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import { useSession, signOut } from "next-auth/react"; // Importar useSession y signOut
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession(); // Obtener el estado de la sesión
 
   return (
     <>
@@ -61,10 +63,44 @@ export default function Sidebar() {
                 Contacto
               </Link>
             </li>
+
+            {/* Enlace al panel de administración (solo para usuarios autenticados) */}
+            {session && (
+              <li>
+                <Link
+                  href="/admin"
+                  className="block p-2 hover:bg-gray-700 rounded"
+                >
+                  Panel de administración
+                </Link>
+              </li>
+            )}
+
+            {/* Botón de login/logout */}
+            <li>
+              {session ? (
+                // Si el usuario está autenticado, muestra el botón de logout
+                <button
+                  onClick={() => signOut()}
+                  className="block w-full p-2 hover:bg-gray-700 rounded text-left"
+                >
+                  Cerrar sesión
+                </button>
+              ) : (
+                // Si el usuario no está autenticado, muestra el botón de login
+                <Link
+                  href="/auth/signin"
+                  className="block p-2 hover:bg-gray-700 rounded"
+                >
+                  Iniciar sesión
+                </Link>
+              )}
+            </li>
+
+            
           </ul>
         </nav>
       </div>
     </>
   );
 }
-
