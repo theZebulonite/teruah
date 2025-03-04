@@ -50,10 +50,10 @@ export default function ContactPage() {
         throw new Error("Hubo un error al enviar el mensaje.");
       }
 
-      const data = await response.json();
+      await response.json(); // No necesitamos la respuesta, pero la esperamos
       setIsSent(true); // Mensaje enviado correctamente
       setFormData({ name: "", email: "", message: "", subscribe: false }); // Limpiar el formulario
-    } catch (error) {
+    } catch {
       setError("Hubo un error al enviar el mensaje."); // Mostrar error
     } finally {
       setIsLoading(false); // Desactivar la barra de progreso
