@@ -10,6 +10,10 @@ export default function ContactPage() {
     subscribe: false,
   });
 
+  const [isLoading, setIsLoading] = useState(false); // Estado para controlar la carga
+  const [isSent, setIsSent] = useState(false); // Estado para controlar si el mensaje se envió
+  const [error, setError] = useState(""); // Estado para manejar errores
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
 
@@ -29,6 +33,9 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true); // Activar la barra de progreso
+    setError(""); // Limpiar errores anteriores
+    setIsSent(false); // Limpiar estado de envío
 
     try {
       const response = await fetch("/api/contact", {
@@ -39,15 +46,17 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        alert("Mensaje enviado correctamente.");
-        setFormData({ name: "", email: "", message: "", subscribe: false });
-      } else {
-        alert("Hubo un error al enviar el mensaje.");
+      if (!response.ok) {
+        throw new Error("Hubo un error al enviar el mensaje.");
       }
+
+      const data = await response.json();
+      setIsSent(true); // Mensaje enviado correctamente
+      setFormData({ name: "", email: "", message: "", subscribe: false }); // Limpiar el formulario
     } catch (error) {
-      console.error("Error:", error);
-      alert("Hubo un error al enviar el mensaje.");
+      setError("Hubo un error al enviar el mensaje."); // Mostrar error
+    } finally {
+      setIsLoading(false); // Desactivar la barra de progreso
     }
   };
 
@@ -119,13 +128,27 @@ export default function ContactPage() {
             </label>
           </div>
 
+          {/* Barra de progreso */}
+          {isLoading && (
+            <div className="w-full bg-gray-200 rounded-full h-2.5">
+              <div className="bg-blue-600 h-2.5 rounded-full animate-progress"></div>
+            </div>
+          )}
+
+          {/* Mensaje de éxito o error */}
+          {isSent && (
+            <p className="text-green-600 text-center">¡Mensaje enviado correctamente!</p>
+          )}
+          {error && <p className="text-red-600 text-center">{error}</p>}
+
           {/* Botón de enviar */}
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              disabled={isLoading}
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-blue-300"
             >
-              Enviar
+              {isLoading ? "Enviando..." : "Enviar mensaje"}
             </button>
           </div>
         </form>

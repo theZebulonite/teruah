@@ -24,3 +24,16 @@ textarea,
 input {
   color: #1a202c; /* Equivalente a text-gray-900 en Tailwind */
 }
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-progress {
+  animation: progress 2s linear infinite;
+}
