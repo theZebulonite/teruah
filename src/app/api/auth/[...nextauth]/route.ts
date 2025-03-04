@@ -1,7 +1,8 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth"; // Importa NextAuthOptions
 import GoogleProvider from "next-auth/providers/google";
 
-export const authOptions = {
+// Define authOptions con el tipo NextAuthOptions
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!, // ID de cliente de Google
